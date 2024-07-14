@@ -21,8 +21,8 @@ const Home = ({ addToCart }) => {
   }, []);
 
   const handleAddToCart = (product) => {
-    addToCart(product);
-    // Trigger animation or feedback (e.g., toast notification)
+    addToCart(product); // Call addToCart function passed from props
+    // Optionally, you can show a success message or animation here
   };
 
   return (
@@ -36,8 +36,9 @@ const Home = ({ addToCart }) => {
           <div key={product.id} className={`product-card ${index % 2 === 0 ? 'stagger-left' : 'stagger-right'}`}>
             <img src={product.image} alt={product.name} className="product-image" />
             <div className="product-details">
-              <h2>{product.name}</h2>
+              <h3>{product.name}</h3>
               <p>{product.description}</p>
+              <p>Price:{product.price}</p>
               <div className="quantity">
                 <label htmlFor="quantity">Quantity:</label>
                 <input type="number" id="quantity" defaultValue="6" />

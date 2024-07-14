@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <Router>
-      <Navbar cartItems={cartItems.length} /> {/* Pass cart items count to Navbar */}
+      <Navbar cartItemsCount={cartItems.length} /> {/* Pass cartItems length to Navbar */}
       <Routes>
         <Route path="/" element={<Home addToCart={addToCart} />} />
         <Route path="/products" element={<Products />} />

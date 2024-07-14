@@ -39,15 +39,16 @@ function Login() {
           <div className="user-info">
             <img src={user.photoURL} alt="Profile" className="profile-pic" />
             <h2>{user.displayName}</h2>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="button" onClick={handleLogout}>Logout</button>
           </div>
         ) : (
           <div>
             <h1>Login</h1>
-            <button onClick={handleLogin}>
+            <center>
+            <button className="button" onClick={handleLogin}>
               <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google icon" />
               Login with Google
-            </button>
+            </button></center>
           </div>
         )}
       </div>
