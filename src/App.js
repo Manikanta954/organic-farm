@@ -1,26 +1,33 @@
-// App.js
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/Home';
-import Login from './components/Login';
 import Cart from './components/Cart';
-import Checkout from './components/Checkout';
+import Login from './components/Login';
+import Navbar from './components/NavBar';
+import { auth } from './firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <Router>
-      <div>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-        </Routes>
-      </div>
+      <Navbar user={user} />
+      <Routes>
+        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        {/* <Route path="/products" element={user ? <Products /> : <Navigate to="/login" />} /> */}
+        <Route path="/cart" element={user ? <Cart /> : <Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;
