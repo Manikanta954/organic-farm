@@ -1,27 +1,18 @@
-// NavBar.js
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import './Navbar.css'; // Style your navbar here
 
-function NavBar() {
+const Navbar = () => {
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Organic Farm
-        </Typography>
-        <Button color="inherit" component={RouterLink} to="/">
-          Home
-        </Button>
-        <Button color="inherit" component={RouterLink} to="/cart">
-          Cart
-        </Button>
-        <Button color="inherit" component={RouterLink} to="/login">
-          Login
-        </Button>
-      </Toolbar>
-    </AppBar>
+    <nav>
+      <ul>
+        <li><Link to="/login">Login</Link></li>
+        <li><Link to="/products">Products</Link></li>
+        <li><Link to="/cart">Cart</Link></li>
+        <li><Link to="/home">home</Link></li>
+      </ul>
+    </nav>
   );
-}
+};
 
-export default NavBar;
+export default Navbar;
